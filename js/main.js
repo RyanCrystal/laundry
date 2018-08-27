@@ -15,14 +15,20 @@ $(window).on('scroll', function () {
   let  height = self_service_background.outerHeight();
   let offset = height / 2;
 
-    let  drop_off = $('#self_service_container').offset().top;
+    let  drop_off = $('#drop_off_service_container').offset().top;
   let    full = $('#full_service_container').offset().top;
-  let    cal1 = 1-(scrollTop-800 ) / 500;
-  let cal2 = 1-(scrollTop-1130 ) / 560;
-  let cal3 = 1-(scrollTop-1430 ) / 560;
+  let self_service = $('#self_service_container').offset().top;
+
+  let    cal1 = 1-(scrollTop+height-self_service ) / 450;
+  let cal2 = 1-(scrollTop+height-drop_off ) / 450;
+  let cal3 = 1-(scrollTop+height-full ) / 450;
 
 // let cal = 1;
-      console.log(scrollTop);
+console.log(scrollTop);
+     console.log(self_service);
+console.log(drop_off);
+console.log(full);
+
       if (cal1 > '1') {
         cal1=1;
       } else if ( cal1 < '0' ) {
@@ -46,7 +52,7 @@ $(window).on('scroll', function () {
       // console.log(height);
       // console.log($('#self_service_container').offset().top);
       // console.log($('#full_service_container').offset().top);
-      console.log(cal3);
+      // console.log(cal3);
 
   // header.css({ 'background-color': 'rgba(230,243,254,0.5)' });
   self_service_background.css({ 'opacity': cal1});
@@ -88,25 +94,60 @@ $(".arrow_up_container").click(function (){
                             scrollTop: $("#price_list_1").offset().top
                                         }, 2000);
                                   });
-                                  $("#header_contact").click(function (){
-                                                $('html, body').animate({
-                                                    scrollTop: $("#contact_1").offset().top
-                                                                }, 2000);
-                                                          });
+    $("#header_contact").click(function (){
+    $('html, body').animate({
+  scrollTop: $("#contact_1").offset().top
+}, 2000);
+});
+
+$("#three_lines").click(function (){
+$("#hidden_row_all").css({ 'display': 'block'});
+$("#a").css({ 'display': 'none'});
+});
+
+$("#close").click(function (){
+$("#hidden_row_all").css({ 'display': 'none'});
+$("#a").css({ 'display': 'block'});
+
+});
+
+$("#hidden_our_service").click(function (){
+$("#hidden_row_all").css({ 'display': 'none'});
+$("#a").css({ 'display': 'block'});
+$('html, body').animate({
+          scrollTop: $("#our_service").offset().top
+                  }, 2000);
+
+});
+
+$("#hidden_pricelist").click(function (){
+$("#hidden_row_all").css({ 'display': 'none'});
+$("#a").css({ 'display': 'block'});
+$('html, body').animate({
+          scrollTop: $("#price_list_1").offset().top
+                  }, 2000);
+
+});
+
+$("#hidden_contact").click(function (){
+$("#hidden_row_all").css({ 'display': 'none'});
+$("#a").css({ 'display': 'block'});
+$('html, body').animate({
+scrollTop: $("#contact_1").offset().top
+}, 2000);
+
+});
 
  $(window).scroll(function(){
    // console.log(a);
    // console.log(b);
 if(a===1&&b===1&&c===1)
    return;
-//   a++;
-//   console.log(a);
-//   if(a==2)return;
-//   var width = 1;
+
   // This is then function used to detect if the element is scrolled into view
 
 
-  // This is where we use the function to detect if ".box2" is scrolled into view, and when it is add the class ".animated" to the <p> child element
+  // This is where we use the function to detect if ".container1" is scrolled into view
   if(elementScrolled('#container1')&&(a===0)) {
     a++;
     var elem = document.getElementById("container1");
@@ -123,8 +164,6 @@ if(a===1&&b===1&&c===1)
        elem.style.width = width + 'px';
      }
    }
-
-  // Your function here
 
   }
   if(elementScrolled('#container2')&&(b===0)) {
@@ -144,7 +183,6 @@ if(a===1&&b===1&&c===1)
      }
    }
 
-  // Your function here
 
   }
   if(elementScrolled('#container3')&&(c===0)) {
@@ -163,8 +201,6 @@ if(a===1&&b===1&&c===1)
        elem.style.width = width + 'px';
      }
    }
-
-  // Your function here
 
   }
 })
